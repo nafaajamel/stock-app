@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const path = require('path');
 const next = require('next')
+require('dotenv').config()
+
+
 const dev = process.env.NODE_ENV !== 'production'
 const PORT = process.env.PORT || 3000
 

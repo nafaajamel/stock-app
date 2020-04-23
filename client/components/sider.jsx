@@ -11,12 +11,12 @@ const  SiderComponent = ()=>{
 let [collapsed,setCollapsed] = useState(true)
 
     return  <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
-    <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+    <Menu theme="dark" /*defaultSelectedKeys={['2']}*/ mode="inline">
      {
        SIDEBAR_ITEMS.map((item,i)=>{
          return (
          <Item  key={i} >
-               <Link href={item.link}>
+          <Link href={item.link}>
           <a>
            {item.icon}
           <span>{item.displayName}</span>

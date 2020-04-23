@@ -2066,8 +2066,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./header */ "./components/header.jsx");
 /* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./footer */ "./components/footer.jsx");
-/* harmony import */ var _breadcrumb__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./breadcrumb */ "./components/breadcrumb.jsx");
-/* harmony import */ var _sider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./sider */ "./components/sider.jsx");
+/* harmony import */ var _sider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sider */ "./components/sider.jsx");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -2075,7 +2074,7 @@ const {
   Content
 } = antd__WEBPACK_IMPORTED_MODULE_1__["Layout"];
 
-
+ //import Breadcrump from './breadcrumb'
 
 
 
@@ -2086,11 +2085,11 @@ const App = ({
     style: {
       minHeight: '100vh'
     }
-  }, __jsx(_header__WEBPACK_IMPORTED_MODULE_2__["default"], null), __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Layout"], null, __jsx(_sider__WEBPACK_IMPORTED_MODULE_5__["default"], null), __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Layout"], {
+  }, __jsx(_header__WEBPACK_IMPORTED_MODULE_2__["default"], null), __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Layout"], null, __jsx(_sider__WEBPACK_IMPORTED_MODULE_4__["default"], null), __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Layout"], {
     style: {
       padding: '0 24px 24px'
     }
-  }, __jsx(_breadcrumb__WEBPACK_IMPORTED_MODULE_4__["default"], null), __jsx(Content, {
+  }, __jsx(Content, {
     className: "site-layout-background",
     style: {
       padding: 24,
@@ -2102,40 +2101,6 @@ const App = ({
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
-
-/***/ }),
-
-/***/ "./components/breadcrumb.jsx":
-/*!***********************************!*\
-  !*** ./components/breadcrumb.jsx ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! antd */ "antd");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_1__);
-
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
-
-const {
-  Item
-} = antd__WEBPACK_IMPORTED_MODULE_1__["Breadcrumb"];
-
-const BreadcrumbComponent = () => {
-  return __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Breadcrumb"], {
-    style: {
-      margin: '16px 0'
-    }
-  }, __jsx(Item, null, "Home"), __jsx(Item, null, "List"), __jsx(Item, null, "App"));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (BreadcrumbComponent);
 
 /***/ }),
 
@@ -2235,6 +2200,112 @@ const HeaderComponent = () => {
 
 /***/ }),
 
+/***/ "./components/news/index.jsx":
+/*!***********************************!*\
+  !*** ./components/news/index.jsx ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _costumHooks_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../costumHooks/index */ "./costumHooks/index.js");
+/* harmony import */ var _news_card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./news-card */ "./components/news/news-card.jsx");
+
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+
+const NewsComponent = props => {
+  const API_KEY = "bpl5emvrh5rcn8r59ob0";
+  const API_HOST = "https://finnhub.io/api/v1";
+  const URL = `${API_HOST}/news?category=general&token=${API_KEY}`;
+  let {
+    data,
+    loading
+  } = Object(_costumHooks_index__WEBPACK_IMPORTED_MODULE_1__["useFetcher"])(URL);
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, loading ? __jsx(_news_card__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    loading: loading
+  }) : data.map(({
+    category,
+    image,
+    headline,
+    summary,
+    url,
+    id
+  }) => {
+    return __jsx(_news_card__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      loading: loading,
+      title: headline,
+      description: summary,
+      key: id,
+      avatar: image,
+      link: url,
+      category: category
+    });
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (NewsComponent);
+
+/***/ }),
+
+/***/ "./components/news/news-card.jsx":
+/*!***************************************!*\
+  !*** ./components/news/news-card.jsx ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! antd */ "antd");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_1__);
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+const {
+  Meta
+} = antd__WEBPACK_IMPORTED_MODULE_1__["Card"];
+
+const NewsCard = ({
+  title,
+  avatar,
+  description,
+  loading,
+  link,
+  category
+}) => {
+  return __jsx("a", {
+    href: link,
+    target: "_blank"
+  }, __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Card"], {
+    style: {
+      width: '70%',
+      marginTop: 16
+    },
+    loading: loading,
+    hoverable: true
+  }, __jsx(Meta, {
+    avatar: __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Avatar"], {
+      src: avatar
+    }),
+    title: title,
+    description: description
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (NewsCard);
+
+/***/ }),
+
 /***/ "./components/sider.jsx":
 /*!******************************!*\
   !*** ./components/sider.jsx ***!
@@ -2276,8 +2347,9 @@ const SiderComponent = () => {
     collapsed: collapsed,
     onCollapse: setCollapsed
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Menu"], {
-    theme: "dark",
-    defaultSelectedKeys: ['1'],
+    theme: "dark"
+    /*defaultSelectedKeys={['2']}*/
+    ,
     mode: "inline"
   }, _consts_index__WEBPACK_IMPORTED_MODULE_2__["SIDEBAR_ITEMS"].map((item, i) => {
     return __jsx(Item, {
@@ -2354,17 +2426,68 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
   displayName: "company's news",
-  link: 'news',
+  link: '/',
   icon: __jsx(_ant_design_icons__WEBPACK_IMPORTED_MODULE_1__["PicLeftOutlined"], null)
 }, {
   displayName: "exchanges",
-  link: 'candles',
+  link: '/candles',
   icon: __jsx(_ant_design_icons__WEBPACK_IMPORTED_MODULE_1__["AreaChartOutlined"], null)
 }, {
   displayName: "recommendations",
-  link: 'recommendation',
+  link: '/recommendation',
   icon: __jsx(_ant_design_icons__WEBPACK_IMPORTED_MODULE_1__["CheckCircleOutlined"], null)
 }]);
+
+/***/ }),
+
+/***/ "./costumHooks/index.js":
+/*!******************************!*\
+  !*** ./costumHooks/index.js ***!
+  \******************************/
+/*! exports provided: useFetcher */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useFetcher", function() { return useFetcher; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+const useFetcher = url => {
+  let {
+    0: state,
+    1: setState
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    data: [],
+    loading: true
+  });
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    setState(_objectSpread({}, state, {
+      loading: true
+    }));
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(url).then(({
+      data
+    }) => {
+      setState({
+        data,
+        loading: false
+      });
+    }).catch(err => console.log(err));
+  }, [url]);
+  return state;
+};
+
+
 
 /***/ }),
 
@@ -2380,12 +2503,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../components/app */ "./components/app.js");
+/* harmony import */ var _components_news_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../components/news/index */ "./components/news/index.jsx");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+
 const Index = () => {
-  return __jsx(_components_app__WEBPACK_IMPORTED_MODULE_1__["default"], null, __jsx("h1", null, "hello"));
+  return __jsx(_components_app__WEBPACK_IMPORTED_MODULE_1__["default"], null, __jsx(_components_news_index__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Index);
@@ -2423,6 +2548,17 @@ module.exports = require("@ant-design/icons");
 /***/ (function(module, exports) {
 
 module.exports = require("antd");
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ }),
 
